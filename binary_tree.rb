@@ -42,6 +42,25 @@ class BinaryTree
     end
     return answer
   end
+
+  def depth_first_search(value)
+    def dfs(value, node = @head)
+      @stack.push(node.right_child) unless node.right_child.nil?
+      puts node.value
+      if node.value == value
+        @found = true
+        return node
+      end
+      @stack.push(node.left_child) unless node.left_child.nil?
+    end
+    return nil if @head == nil
+    @stack = [@head]
+    @found = false
+    while !@stack.empty? && @found == false
+      answer = dfs(value, @stack.pop)
+    end
+    return answer
+  end
 end
 
 class Node
@@ -56,4 +75,4 @@ end
 
 binarytree = BinaryTree.new
 binarytree.build_tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-puts binarytree.breadth_first_search(9).inspect
+puts binarytree.depth_first_search(3).inspect

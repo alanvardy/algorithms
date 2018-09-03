@@ -1,5 +1,4 @@
 class BinaryTree
-  attr_accessor :head
   def initialize
     @head = nil
   end
